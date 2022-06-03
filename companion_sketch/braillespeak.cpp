@@ -1,6 +1,6 @@
 #include "Arduino.h"
 #include "pitches.h"
-#include "BrailleSpeak.h"
+#include "braillespeak.h"
 
 // Each character in alphabetical order converted to decimal equivelant of
 // binary braille pairs.
@@ -52,9 +52,6 @@ BrailleSpeak::BrailleSpeak(int pin)
 }
 
 void BrailleSpeak::speak(char * words) {
-//  #ifdef DEBUG
-    Serial.println(words);
-//  #endif
   for (int i = 0; i < strlen(words); i ++)
   {
     handleChar(words[i]);

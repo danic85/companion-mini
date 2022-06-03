@@ -1,0 +1,31 @@
+#ifndef LEDHelper_h
+#define LEDHelper_h
+
+#include "Arduino.h"
+
+#include <FastLED.h> // Manage Libraries -> Install FastLED
+#define LED_COUNT 9
+#define LED_PIN   2
+
+#define BREATH_STEP   3
+
+class LEDHelper
+{
+    
+  private:
+    CRGB _leds[LED_COUNT];
+    int _count = LED_COUNT;
+    
+    int _breath;
+    bool _breathe_in = true;
+    unsigned long _breath_pause;
+    
+  public:
+    LEDHelper();
+    void set(int identifier, int r, int g, int b);
+    void setEye(int r, int g, int b);
+    void setAll(int r, int g, int b);
+    int breath_sin();
+    int breathe();
+};
+#endif
