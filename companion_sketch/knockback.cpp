@@ -46,7 +46,7 @@ KnockBack::replay()
 {
     int i;
     _lastKnock = false;
-    Serial.println("Replaying");
+//    Serial.println("Replaying");
     for (i = 0; i < _knockPos; i = i + 1) 
     {
       int prev = i-1;
@@ -54,7 +54,7 @@ KnockBack::replay()
       unsigned long d = (_knocks[i] - _knocks[prev]);
       if (d > 50) d = d-50;
       delay(d);
-      Serial.println(i);
+//      Serial.println(i);
       flash(true);
     }
     _knockPos = 0; // reset pointer;
