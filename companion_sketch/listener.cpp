@@ -18,7 +18,7 @@ double Listener::sample_sound() {
   // collect data for 50 mS
   while (millis() - startMillis < SOUND_SAMPLE_WINDOW)
   {
-    unsigned int sample = analogRead(A6);
+    unsigned int sample = analogRead(_pin);
     
     if (sample < 1024)  // toss out spurious readings
     {

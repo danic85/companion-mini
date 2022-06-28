@@ -9,7 +9,7 @@ LEDHelper::LEDHelper()
   FastLED.addLeds<WS2812, LED_PIN, GRB>(_leds, _count);
   _breath_pause = millis();
   _breath = 0;
-  _look_pos = 2;
+  _look_pos = 6;
   _look_next = millis();
   _blink_state = false;
   _blink_next = millis();
@@ -20,7 +20,7 @@ void LEDHelper::set(int identifier, int r, int g, int b) {
 }
 
 void LEDHelper::setEye(int r, int g, int b) {
-  for (int i = 2; i < 9; i++) set(i, r, g, b);
+  for (int i = 0; i < 7; i++) set(i, r, g, b);
 }
 
 void LEDHelper::setAll(int r, int g, int b) {
@@ -69,16 +69,16 @@ void LEDHelper::look() {
   if (_look_next > millis()) return;
   setEye(0, 0, 0);
   switch (_look_pos) {
-    case 2:
+    case 6:
       _look_pos = 3;
       _look_next = millis() + LOOK_PAUSE;
       break;
     case 3:
-      _look_pos = 6;
+      _look_pos = 0;
       _look_next = millis() + LOOK_PAUSE;
       break;
-    case 6:
-      _look_pos = 2;
+    case 0:
+      _look_pos = 6;
       _look_next = millis() + random(10000, 50000);
       break;
   }

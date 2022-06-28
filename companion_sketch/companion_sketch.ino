@@ -3,9 +3,9 @@
 
 
 //#define DEBUG
-#define SOUND
+//#define SOUND
 
-#define DEBUG_GESTURE
+//#define DEBUG_GESTURE
 #define GESTURE
 
 #ifdef GESTURE
@@ -119,7 +119,7 @@ void log_release()
   unsigned long touch_end = millis();
   // Track button presses and length
 
-//  Serial.println("release");
+  Serial.println("release");
   ledHelper.setEye(0, 0, 0);
 //  FastLED.show();
 
@@ -137,7 +137,7 @@ void log_release()
     mode = mode + 1;
     if (mode >= MODE_SIZE) mode = MODE_LISTEN;
     show_mode(50);
-//    Serial.println(mode);
+    Serial.println(mode);
   }
 //  Serial.println(touch_end - touch_start);
   touch_start = NULL;
@@ -156,7 +156,7 @@ char getRandomLetter()
 
 void show_mode(int val)
 {
-  ledHelper.set(1, (mode == MODE_SECURITY) * val, (mode == MODE_KNOCKBACK) * val, (mode == MODE_LISTEN) * val);
+  ledHelper.set(7, (mode == MODE_SECURITY) * val, (mode == MODE_KNOCKBACK) * val, (mode == MODE_LISTEN) * val);
 }
 
 
@@ -191,6 +191,7 @@ void loop()
 //  Serial.println(digitalRead(BUTTON_PIN));
   if (ignore_motion == 0) {
     if (digitalRead(MOTION_PIN) == HIGH) {
+//      Serial.println("Movement");
       last_movement = millis();
     }
   }
@@ -224,6 +225,7 @@ void loop()
       else {
         // I'm awake and listening to noises
         sound = listener.sample_sound();
+//        Serial.println(sound);
         ledHelper.look();
         show_mode(sound); // Flash mode LED instead of eye
       }
@@ -231,7 +233,7 @@ void loop()
      default:
       break;
   }
-  ledHelper.set(0, 0, 0, ledHelper.breath_sin()); // @todo integrate into breathe() method and set to constant rate, not steps
+  ledHelper.set(8, 0, 0, ledHelper.breath_sin()); // @todo integrate into breathe() method and set to constant rate, not steps
   FastLED.show();
 }
 
